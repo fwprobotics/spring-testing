@@ -64,11 +64,11 @@ public final class MecanumDrive {
 
         // drive model parameters
         public double inPerTick = .00053926888;
-        public double lateralInPerTick = 0.0004013367504534022;
-        public double trackWidthTicks = 25995.930785740158;
+        public double lateralInPerTick = 0.0004239313401624663;
+        public double trackWidthTicks = 26349.863546807024;
 
         // feedforward parameters (in tick units)
-        public double kS = 1.0044074888305312;
+        public double kS = 1.0625852536491598;
         public double kV = 0.00008322746224923549;
         public double kA = 0.00001;
 
@@ -83,7 +83,7 @@ public final class MecanumDrive {
 
         // path controller gains
         public double axialGain = 15.0;
-        public double lateralGain = 0.0;
+        public double lateralGain = 10.0;
         public double headingGain = 10.0; // shared with turn
 
         public double axialVelGain = 0.05;
@@ -239,7 +239,7 @@ public final class MecanumDrive {
 
         voltageSensor = hardwareMap.voltageSensor.iterator().next();
 
-        localizer = new ThreeDeadWheelLocalizer(hardwareMap, this.PARAMS.inPerTick);
+        localizer = new TwoDeadWheelLocalizer(hardwareMap, lazyImu.get(), this.PARAMS.inPerTick);
 
         FlightRecorder.write("MECANUM_PARAMS", PARAMS);
     }
